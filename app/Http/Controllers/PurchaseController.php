@@ -10,7 +10,7 @@ class PurchaseController extends Controller
 {
     public function store(Request $request)
     {
-
+        
         $validator = Validator::make($request->all(), [
             'event_id' => 'required|exists:events,id',
             'customer_name' => 'required|string|max:255',
