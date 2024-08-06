@@ -44,5 +44,5 @@ RUN chown -R www-data:www-data /var/www \
 # Exponer el puerto 80
 EXPOSE 80
 
-# Iniciar Apache en primer plano
-CMD ["apache2-foreground"]
+# Comando para ejecutar composer install, configurar permisos y luego iniciar el servidor web
+CMD bash -c "composer install && chown -R www-data:www-data /var/www && chmod -R 755 /var/www/storage && apache2-foreground"
