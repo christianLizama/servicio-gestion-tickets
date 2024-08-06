@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>Gestión de Tickets</h1>
+<p>Este proyecto utiliza Laravel y MySQL junto con Docker y Docker-compose para su ejecución. A continuación se detallan los pasos necesarios para configurar y ejecutar el proyecto.</p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h2>Requisitos del Entorno</h2>
+<ul>
+<li>PHP 8.3.10 (cli) (built: Jul 30 2024 15:15:59) (ZTS Visual C++ 2019 x64)</li>
+<li>Composer version 2.7.7 2024-06-10 22:11:12</li>
+</ul>
 
-## About Laravel
+<h2>Requisitos Previos</h2>
+<ul>
+<li><a href="https://www.docker.com/products/docker-desktop">Docker</a> instalado</li>
+<li><a href="https://docs.docker.com/compose/install/">Docker-compose</a> instalado</li>
+</ul>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h2>Instalación</h2>
+<ol>
+<li>Clonar el repositorio del proyecto:</li>
+<pre><code>git clone https://github.com/christianLizama/servicio-gestion-tickets.git</code></pre>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<li>Navegar al directorio del proyecto:</li>
+<pre><code>cd servicio-gestion-tickets</code></pre>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<li>Copiar el archivo <code>.env.example</code> a <code>.env</code>:</li>
+<pre><code>cp .env.example .env</code></pre>
 
-## Learning Laravel
+<li>Construir y levantar los contenedores de Docker:</li>
+<pre><code>docker-compose up --build -d </code></pre>
+</ol>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<h2>Configuración Adicional</h2>
+<p>Una vez que los contenedores estén en funcionamiento, es necesario ingresar al contenedor de la aplicación y ejecutar las migraciones y los seeders.</p>
+<ol>
+<li>Ingresar al contenedor de la aplicación:</li>
+<pre><code>docker-compose exec app bash</code></pre>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<li>Generar la clave de la aplicación:</li>
+<pre><code>php artisan key:generate</code></pre>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<li>Ejecutar las migraciones:</li>
+<pre><code>php artisan migrate</code></pre>
 
-## Laravel Sponsors
+<li>Ejecutar los seeders:</li>
+<pre><code>php artisan db:seed --class=CustomerSeeder</code></pre>
+<pre><code>php artisan db:seed --class=EventSeeder</code></pre>
+</ol>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<h2>Uso</h2>
+<p>Una vez completados los pasos anteriores, el proyecto estará disponible en <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 
-### Premium Partners
+<h2>Consultando la API</h2>
+<p>El proyecto expone varias rutas de API que pueden ser utilizadas para interactuar con la aplicación. A continuación se muestran ejemplos de cómo consultar la API:</p>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+<h3>Obtener todos los eventos</h3>
+<p>Ruta: <code>GET /events</code></p>
+<img src="images/consulta1.png" alt="Obtener todos los eventos">
 
-## Contributing
+<h3>Obtener detalles de un evento</h3>
+<p>Ruta: <code>GET /event/{id}</code></p>
+<img src="images/consulta2.png" alt="Obtener detalles de un evento">
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<h3>Realizar una compra</h3>
+<p>Ruta: <code>POST /purchase</code></p>
+<img src="images/consulta3.png" alt="Realizar una compra">
 
-## Code of Conduct
+<h3>Obtener órdenes por cliente</h3>
+<p>Ruta: <code>GET /orders/customer</code></p>
+<img src="images/consulta4.png" alt="Obtener órdenes por cliente">
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<h2>Comandos Útiles</h2>
+<ul>
+<li>Ver los logs de los contenedores:</li>
+<pre><code>docker-compose logs</code></pre>
 
-## Security Vulnerabilities
+<li>Detener los contenedores:</li>
+<pre><code>docker-compose down</code></pre>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<li>Reiniciar los contenedores:</li>
+<pre><code>docker-compose restart</code></pre>
+</ul>
 
-## License
+<h2>Ejecutar sin usar Docker</h2>
+<p>Si prefieres ejecutar el proyecto sin usar Docker, sigue estos pasos:</p>
+<ol>
+<li>Asegúrate de tener PHP, Composer y MySQL instalados en tu máquina.</li>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<li>Instalar las dependencias del proyecto:</li>
+<pre><code>composer install</code></pre>
+
+<li>Copiar el archivo <code>.env.example</code> a <code>.env</code> y configurar las variables de entorno necesarias.</li>
+
+<li>Generar la clave de la aplicación:</li>
+<pre><code>php artisan key:generate</code></pre>
+
+<li>Ejecutar las migraciones:</li>
+<pre><code>php artisan migrate</code></pre>
+
+<li>Ejecutar los seeders:</li>
+<pre><code>php artisan db:seed --class=CustomerSeeder</code></pre>
+<pre><code>php artisan db:seed --class=EventSeeder</code></pre>
+
+<li>Levantar el servidor de desarrollo de Laravel:</li>
+<pre><code>php artisan serve</code></pre>
+</ol>
+
+<p>El proyecto estará disponible en <a href="http://localhost:8000">http://localhost:8000</a>.</p>
+
+<h2>Suposiciones del Proyecto</h2>
+<ul>
+<li>Cada cliente tiene un correo electrónico único que actúa como su identificador principal.</li>
+<li>Los eventos tienen un nombre, una descripción opcional, una fecha de inicio y una fecha de finalización.</li>
+<li>El precio de los eventos es un valor decimal con hasta 8 dígitos antes del punto decimal y 2 dígitos después.</li>
+<li>Cada ticket está asociado con un evento específico y un cliente específico. Los tickets se eliminan automáticamente si se elimina el evento o el cliente asociado.</li>
+<li>Cada orden está vinculada a un ticket específico. Las órdenes tienen un campo de estado para rastrear su progreso. Por defecto, todas las compras se consideran exitosas y se les asigna el estado de "completed". Sin embargo, es fácil editar el código para manejar otros estados en caso de errores u otras situaciones como compras por tarjeta de crédito por ejemplo. Las órdenes se eliminan automáticamente si se elimina el ticket asociado.</li>
+<li>Las tablas <code>tickets</code> y <code>orders</code> tienen relaciones de clave foránea con las tablas <code>events</code>, <code>customers</code>, y <code>tickets</code> respectivamente. Se utiliza eliminación en cascada para mantener la integridad referencial.</li>
+<li>Todas las tablas incluyen campos de timestamps (<code>created_at</code> y <code>updated_at</code>) para rastrear cuándo se crean y actualizan los registros.</li>
+<li>No se ha implementado un sistema de inicio de sesión ni funcionalidades relacionadas, ya que el enfoque principal del proyecto es la lógica de la compra de tickets.</li>
+<li>Se asume que un usuario puede comprar varios tickets para el mismo evento.</li>
+<li>Para simplificar la ejecución de la solución, se han creado seeders para poblar la base de datos con datos mínimos necesarios para utilizar la aplicación. No se ha creado un sistema de inicio de sesión ni funcionalidades relacionadas, ya que se considera innecesario para los objetivos del proyecto.</li>
+</ul>
+
+</body>
+</html>
