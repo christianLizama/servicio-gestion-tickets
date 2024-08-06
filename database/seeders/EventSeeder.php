@@ -22,8 +22,8 @@ class EventSeeder extends Seeder
         ]);
 
         Event::create([
-            'name' => 'Conferencia de Tecnología',
-            'description' => 'Una conferencia sobre las últimas tendencias en tecnología.',
+            'name' => 'Concierto de Rap',
+            'description' => 'Un increíble concierto de rap en vivo.',
             'start_date' => '2024-09-15 09:00:00',
             'end_date' => '2024-09-15 17:00:00',
             'price' => '150.00',
