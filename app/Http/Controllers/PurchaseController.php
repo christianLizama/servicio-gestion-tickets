@@ -31,8 +31,7 @@ class PurchaseController extends Controller
         // Validar los datos de la petición
         $validator = Validator::make($request->all(), [
             'event_id' => 'required|exists:events,id',
-            'customer_name' => 'required|string|max:255',
-            'customer_email' => 'required|email|max:255',
+            'customer_id' => 'required|exists:customers,id',
         ]);
 
         // Validar si hay errores en la validación
@@ -47,8 +46,7 @@ class PurchaseController extends Controller
         // Crear el ticket
         $ticket = Ticket::create([
             'event_id' => $request->event_id,
-            'customer_name' => $request->customer_name,
-            'customer_email' => $request->customer_email,
+            'customer_id' => $request->customer_id,
         ]);
 
         if (!$ticket) {
