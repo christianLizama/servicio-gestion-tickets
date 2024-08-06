@@ -11,9 +11,13 @@ class Ticket extends Model
 
     protected $fillable = [
         'event_id',
-        'customer_name',
-        'customer_email',
+        'customer_id',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 
     public function event()
     {
