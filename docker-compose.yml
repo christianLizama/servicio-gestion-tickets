@@ -13,6 +13,3 @@ services:
       - .:/var/www
     env_file:
       - .env
-    environment:
-      - APP_ENV=local
-      - APP_DEBUG=true
