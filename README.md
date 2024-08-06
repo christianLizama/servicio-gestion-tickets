@@ -58,6 +58,14 @@
 <h2>Consultando la API</h2>
 <p>El proyecto expone varias rutas de API que pueden ser utilizadas para interactuar con la aplicación. A continuación se muestran ejemplos de cómo consultar la API:</p>
 
+<p>Además, puedes utilizar la colección de Postman incluida en el repositorio para facilitar la interacción con las rutas de la API. La colección se llama <code>Servicio Gestion Tickets.postman_collection.json</code> y está disponible en el directorio del repositorio. Para utilizarla, sigue estos pasos:</p>
+<ul>
+<li>Descarga e instala Postman si aún no lo has hecho.</li>
+<li>Abre Postman y selecciona la opción para importar una colección.</li>
+<li>Selecciona el archivo <code>Servicio Gestion Tickets.postman_collection.json</code> desde el directorio del repositorio.</li>
+<li>Una vez importada, podrás ver y utilizar todas las rutas de la API definidas en la colección, así como ejecutar las solicitudes y ver las respuestas directamente desde Postman.</li>
+</ul>
+
 <h3>Obtener todos los eventos</h3>
 <p>Ruta: <code>GET /events</code></p>
 <img src="images/consulta1.png" alt="Obtener todos los eventos">
