@@ -15,11 +15,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     libonig-dev \
     libzip-dev \
-    sqlite3 \
-    libsqlite3-dev \
     && docker-php-ext-configure gd \
     && docker-php-ext-install gd \
-    && docker-php-ext-install pdo pdo_sqlite mbstring zip exif pcntl
+    && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl
 
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -42,9 +40,6 @@ RUN a2enmod rewrite
 # Configurar permisos
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
-
-# Ejecutar migraciones y seeders
-RUN php artisan migrate --seed --force
 
 # Exponer el puerto 80
 EXPOSE 80
