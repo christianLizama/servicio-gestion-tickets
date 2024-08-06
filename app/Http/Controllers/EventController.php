@@ -11,6 +11,9 @@ class EventController extends Controller
         // Obtenemos todos los eventos
         $events = Event::all();
         
+        // Quitamos los campos created_at y updated_at para obtener solo la información relevante
+        $events = Event::all()->makeHidden(['created_at', 'updated_at']);
+
         // Validar si hay eventos
         if($events->isEmpty()){
             return response()->json(['message' => 'No hay eventos'], 200);
