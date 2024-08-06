@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'ticket_id',
+        'status',
+    ];
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 }
