@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Gestión de Tickets</h1>
-<p>Este proyecto utiliza Laravel junto con Docker y Docker-compose para su ejecución. A continuación se detallan los pasos necesarios para configurar y ejecutar el proyecto.</p>
+<p>Este proyecto utiliza Laravel y MySQL junto con Docker y Docker-compose para su ejecución. A continuación se detallan los pasos necesarios para configurar y ejecutar el proyecto.</p>
 
 <h2>Requisitos del Entorno</h2>
 <ul>
@@ -32,7 +32,7 @@
 <pre><code>cp .env.example .env</code></pre>
 
 <li>Construir y levantar los contenedores de Docker:</li>
-<pre><code>docker-compose up -d --build</code></pre>
+<pre><code>docker-compose up --build -d </code></pre>
 </ol>
 
 <h2>Configuración Adicional</h2>
