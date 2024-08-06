@@ -89,7 +89,7 @@
 <h2>Ejecutar sin usar Docker</h2>
 <p>Si prefieres ejecutar el proyecto sin usar Docker, sigue estos pasos:</p>
 <ol>
-<li>Asegúrate de tener PHP y Composer instalados en tu máquina.</li>
+<li>Asegúrate de tener PHP, Composer y MySQL instalados en tu máquina.</li>
 
 <li>Instalar las dependencias del proyecto:</li>
 <pre><code>composer install</code></pre>
